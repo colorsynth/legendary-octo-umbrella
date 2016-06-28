@@ -9,7 +9,7 @@ import numpy
 t0=time.time()
 
 picnum = 226
-final = 1
+final = 0
 
 
 if final ==1:
@@ -41,9 +41,9 @@ m3=1.0
 mMax=9999999999999999
 counts=0
 for x0 in range (im.size[0]):
-    x = (1*2*pi*(float (x0+1)/xm-h))*1
+    x = (1*2*pi*(float (x0+1)/xm-h))*5
     for y0 in range (im.size[1]):
-        y =(1*2*pi*(float (y0+1)/ym-h))*1
+        y =(1*2*pi*(float (y0+1)/ym-h))*5
         z=complex (x,y)
         #z = complex (numpy.sin ((y+x)*numpy.sin (x)), numpy.sin ((x+y)*numpy.sin (y*y)))
         #z1 = complex (x+x, x*y)

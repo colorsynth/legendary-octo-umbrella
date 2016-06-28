@@ -8,7 +8,7 @@ import numpy
 #font = ImageFont.load_default()
 t0=time.time()
 
-picnum = 230
+picnum = 243
 final = 0
 
 
@@ -16,8 +16,8 @@ if final ==1:
     xm = 1080
     ym = 1080
 else:
-    xm = 200
-    ym = 200
+    xm = 1080
+    ym = 50
 '''
     xm = 1080
     ym = 1920
@@ -42,18 +42,24 @@ hue = 1
 saturation = 100
 luminance = 50
 factorZ = 1
+theta = pi/2
 for x0 in range (im.size[0]):
-    x = (1*2*pi*(float (x0+1)/xm-h))*1
+    xi = (1*2*pi*(float (x0+1)/xm-h))*1
     for y0 in range (im.size[1]):
-        y =(1*2*pi*(float (y0+1)/ym-h))*1
+        yi =(1*2*pi*(float (y0+1)/ym-h))*1
+        x=xi*numpy.cos (theta) - yi*numpy.sin (theta)
+        y=xi*numpy.sin (theta) + yi*numpy.cos (theta)
+        
         z=complex  (x,y)
-        zs=complex (x*x,y*y)
-        z1=z*z
-        z2=z
-        hue = (int) (180*(numpy.sin (factorZ*numpy.abs (z1))+1))
-        #hue=hue/10
-        saturation = (int) (50*(factorZ*numpy.sin (numpy.abs (z2))+1))
-        #luminance = (int) (50*(numpy.sin (numpy.abs (z))+1))
+        zs=complex (numpy.sin (y),numpy.sin (x))
+        z1=numpy.power (zs*z,1.5)*x*numpy.sin (y)#numpy.power ( (x*numpy.sin (y)+y)*zs,0.75)
+        z2=zs
+        hue =  ( (factorZ*numpy.abs (z1)))%1
+        hue=(int) ((hue)*360)
+        #saturation = (int) (50*(factorZ*numpy.sin (numpy.abs (z2))+1))
+        lf=30
+        ls=0
+        #luminance = (int) (ls+(lf)*(numpy.sin (numpy.abs (z2))+1))
         
         
         color = 'hsl(%d, %d%%, %d%%)' % (hue, saturation, luminance)
